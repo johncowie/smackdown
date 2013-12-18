@@ -1,0 +1,21 @@
+img {
+  max-width: 300px;
+}
+
+.markdown-view {
+  float: left;
+  width: 30%;
+  height: 100%;
+  border: solid 1px black;
+  background-color: #ddd;
+  resize: none;
+  overflow: auto;
+}
+
+.html-view {
+  float: left;
+  height: 100%;
+  width: 69%;
+  border: solid 1px black;
+  resize: none;
+}
