@@ -1,4 +1,6 @@
-# Header
+My Second Post
+1/12/2013
+apple, banana
 
 ## Sub header
 
