@@ -3,7 +3,7 @@
             [smackdown.views :as views :refer [post post-list multiple-posts]]
             [smackdown.util :refer [wipe-directory! nth-safe spit-rec]]
             [smackdown.md :refer [get-posts-data]]
-            ;[smackdown.wordpress :refer [get-posts-data]]
+            [smackdown.wordpress :refer [get-wp-posts-data]]
             )
   (:gen-class))
 
@@ -57,7 +57,7 @@
         generate-styles])))
 
 (defn generate-site! [markdown-dir target-dir]
-    (let [fs (generate-all (postprocess (get-posts-data markdown-dir)))]
+    (let [fs (generate-all (postprocess (get-wp-posts-data)))]
       (wipe-directory! target-dir)
       (doseq [{rel-path :rel-path data :data} fs]
         (spit-rec (str target-dir "/" rel-path) data))))

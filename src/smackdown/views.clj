@@ -14,10 +14,19 @@
      [:title title]
      (include-css "http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600italic,600,700italic,700,800italic,800")
      (include-css "style.css")
+     (include-css "js/google-code-prettify/prettify.css")
     ]
    [:body
     [:div.header
-       [:span "john cowie"]]
+       [:span.container "JOHN COWIE"]]
+    [:div.nav
+       [:div.container
+         [:ul
+           [:li "Home"]
+           [:li "About"]
+          ]
+        ]
+     ]
     [:div.container
       content
      ]
@@ -35,6 +44,7 @@
            )
         ]
       ]
+     (include-js "js/google-code-prettify/run_prettify.js")
    ]
   )
 

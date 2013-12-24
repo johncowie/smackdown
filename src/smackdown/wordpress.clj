@@ -16,7 +16,7 @@
    }
   )
 
-(defn get-posts-data []
+(defn get-wp-posts-data []
   (let [json (get-data "http://johncowie.co.uk?json=1")]
      (map translate-post (:posts json))
     )

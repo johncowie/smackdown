@@ -16,7 +16,7 @@
   )
 
 (def pa (make-palette :#BC294E :#26103D :#C7C1C2 :#3D2B5C :#912049))
-(def pb (make-palette :#036564 :#CDB380 :#E8DDCB :#033649 :#031634))
+(def pb (make-palette :#036564 :#E8DDCB :#E8DDCB :#033649 :#031634))
 
 (def palette pb)
 
@@ -26,6 +26,7 @@
     {:font-family ["\"Open Sans\"" "sans-serif"]
      :font-size (px 18)
      :background-color (:post-bg palette)
+     :color (:post-text palette)
      :padding (px 0)
      :margin (px 0)}
   ]
@@ -33,12 +34,26 @@
     {:color (:links palette)
      :text-decoration :none}
   ]
+ [:code
+    {:display :block
+     :background-color :white
+     :margin [[(px 10) (px 0)]]
+     :padding (px 10)}
+  ]
+ [:.nav
+    {
+     :display :block
+     :width "100%"
+     :background-color (:post-text palette)
+     }
+    [:ul {:margin 0 :padding 0}]
+    [:li {:display :inline-block
+          :margin (px 5)
+          :color (:header-text palette)}]
+  ]
  [:.container {:display :block
                :margin [[(px 0) :auto (px 0) :auto]]
-               :width width
-               :background-color (:post-bg palette)
-               :color (:post-text palette)
-               :height "100%"}
+               :width width}
    (at-media {:max-width width}
            [:& {:width "100%"}])]
 
@@ -46,16 +61,16 @@
     {:display :block
      :background-color (:header-bg palette)
      :color (:header-text palette)
-     :font-size (px 100)
+     :font-size (px 80)
      :font-weight 700
      :margin (px 0)
-     :text-align :center
      }
     (at-media {:max-width width}
               [:& {:font-size (px 50)}])
   ]
  [:.post
-    {:padding (px 10)}
+    {:height "100%"
+     :padding (px 10)}
   ]
  [:.footer
     {:padding (px 10)}
