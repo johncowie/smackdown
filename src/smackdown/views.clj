@@ -1,7 +1,10 @@
 (ns smackdown.views
   (:require [hiccup.page :refer [include-js include-css html5]]
             [hiccup.core :refer [html]]
-            [clj-time.format :refer [formatter unparse]])
+            [clj-time.format :refer [formatter unparse]]
+            [smackdown.css :refer [generate-css]]
+            [me.raynes.laser :as laser]
+            [clj-http.client :as client])
   )
 
 (def date-formatter (formatter "dd/MM/yyyy"))
@@ -9,28 +12,15 @@
 (defn fdate [date] (unparse date-formatter date))
 
 (defn base-template [title & content]
-   (html5
-   [:head
-     [:title title]
-     (include-css "http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600italic,600,700italic,700,800italic,800")
-     (include-css "style.css")
-     (include-css "js/google-code-prettify/prettify.css")
-    ]
-   [:body
-    [:div.header
-       [:span.container "JOHN COWIE"]]
-    [:div.nav
-       [:div.container
-         [:ul
-           [:li "Home"]
-           [:li "About"]
-          ]
-        ]
-     ]
-    [:div.container
-      content
-     ]
-   ]))
+  (laser/document
+     (laser/parse (:body (client/get "http://design.johncowie.co.uk")))
+     (laser/element= :title)
+     (laser/content title)
+     (laser/class= :content)
+     (laser/content (laser/unescaped (html content)))
+     (laser/class= "blog-link")
+     (laser/classes "selected")
+   ))
 
 (defn- post-footer [prevPostLink nextPostLink tags]
   [:div.footer

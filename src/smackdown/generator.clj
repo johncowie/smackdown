@@ -1,6 +1,5 @@
 (ns smackdown.generator
-  (:require [smackdown.css :refer [generate-css]]
-            [smackdown.views :as views :refer [post post-list multiple-posts]]
+  (:require [smackdown.views :as views :refer [post post-list multiple-posts]]
             [smackdown.util :refer [wipe-directory! nth-safe spit-rec]]
             [smackdown.md :refer [get-posts-data]]
             [smackdown.wordpress :refer [get-wp-posts-data]]
@@ -44,20 +43,15 @@
 (defn- generate-all-posts-html [file-metadata]
     [(define-page "all.html" (views/multiple-posts "All posts" file-metadata))])
 
-(defn- generate-styles [files-metadata]
-   [(define-page "style.css" (generate-css))]
-  )
-
 (defn generate-all [files-metadata]
   (apply concat (map #(% files-metadata)
        [generate-index-page
         generate-tag-files
         generate-files-html
-        generate-all-posts-html
-        generate-styles])))
+        generate-all-posts-html])))
 
 (defn generate-site! [markdown-dir target-dir]
-    (let [fs (generate-all (postprocess (get-wp-posts-data)))]
+    (let [fs (generate-all (postprocess (get-posts-data markdown-dir)))]
       (wipe-directory! target-dir)
       (doseq [{rel-path :rel-path data :data} fs]
         (spit-rec (str target-dir "/" rel-path) data))))

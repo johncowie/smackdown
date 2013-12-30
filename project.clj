@@ -4,6 +4,8 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [compojure "1.1.6"]
                  [me.raynes/cegdown "0.1.0"]
+                 [me.raynes/hickory "0.4.2"]
+                 [me.raynes/laser "1.1.1"]
                  [hiccup "1.0.4"]
                  [garden "1.1.4"]
                  [clj-time "0.6.0"]

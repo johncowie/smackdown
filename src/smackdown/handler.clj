@@ -7,7 +7,7 @@
             [hiccup.core :refer [html]]
             [hiccup.page :refer [include-css include-js]]
             [smackdown.generator :refer [generate-site!]]
-            [smackdown.views :refer [post]]
+            [smackdown.views :refer [post base-template]]
             [smackdown.css :refer [generate-css]]
             [clj-time.core :refer [date-time]]
             ))
@@ -54,6 +54,7 @@
   (GET "/test" [] (test-page))
   (GET "/css" [] (content-type (response (generate-css)) "text/css"))
   (GET "/site/:file-name" [file-name] (file-response (str "site/" file-name)))
+  (GET "/template" [] (base-template "Template" nil))
   (route/resources "/")
   (route/not-found "Not Found"))
 

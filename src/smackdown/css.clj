@@ -15,10 +15,13 @@
    :links links}
   )
 
-(def pa (make-palette :#BC294E :#26103D :#C7C1C2 :#3D2B5C :#912049))
-(def pb (make-palette :#036564 :#E8DDCB :#E8DDCB :#033649 :#031634))
+(def palettes {
+:a (make-palette :#BC294E :#26103D :#C7C1C2 :#3D2B5C :#912049)
+:b (make-palette :#036564 :#E8DDCB :#E8DDCB :#033649 :#031634)
+:c (make-palette :#555555 :#ffffff :#ffffff :#000000 :#ff0000)
+})
 
-(def palette pb)
+(def palette (:c palettes))
 
 (defn generate-css []
 (css
@@ -48,8 +51,12 @@
      }
     [:ul {:margin 0 :padding 0}]
     [:li {:display :inline-block
-          :margin (px 5)
-          :color (:header-text palette)}]
+          :margin (px 5)}]
+    [:a  {:color (:header-text palette)}
+       [:&.selected
+         {:color :#ff0000}
+        ]
+     ]
   ]
  [:.container {:display :block
                :margin [[(px 0) :auto (px 0) :auto]]
@@ -61,16 +68,16 @@
     {:display :block
      :background-color (:header-bg palette)
      :color (:header-text palette)
-     :font-size (px 80)
-     :font-weight 700
      :margin (px 0)
+     :padding (px 5)
+     :text-align :center
      }
     (at-media {:max-width width}
               [:& {:font-size (px 50)}])
   ]
- [:.post
-    {:height "100%"
-     :padding (px 10)}
+ [:.content
+    {:padding (px 10)
+     :line-height 1.7}
   ]
  [:.footer
     {:padding (px 10)}
