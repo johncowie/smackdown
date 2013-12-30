@@ -27,14 +27,7 @@
     (if nextPostLink [:a.next {:href (:url nextPostLink)} "next"])
     (if prevPostLink [:a.previous {:href (:url prevPostLink)} "previous"])
      [:div.clear-fix]
-     [:div.tags
-       [:ul
-         (for [tag tags]
-           [:li [:a {:href (str tag ".html")} tag]]
-           )
-        ]
-      ]
-     (include-js "js/google-code-prettify/run_prettify.js")
+     ;[:div.tags [:ul (for [tag tags] [:li [:a {:href (str tag ".html")} tag]])]]
    ]
   )
 

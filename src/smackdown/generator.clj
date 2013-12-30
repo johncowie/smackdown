@@ -41,14 +41,16 @@
   (for [f files-metadata] (define-page (:file-name f) (views/post f))))
 
 (defn- generate-all-posts-html [file-metadata]
-    [(define-page "all.html" (views/multiple-posts "All posts" file-metadata))])
+    [(define-page "index.html" (views/multiple-posts "All posts" file-metadata))])
 
 (defn generate-all [files-metadata]
   (apply concat (map #(% files-metadata)
-       [generate-index-page
-        generate-tag-files
-        generate-files-html
-        generate-all-posts-html])))
+       [
+        ;generate-index-page
+        ;generate-tag-files
+        ;generate-files-html
+        generate-all-posts-html
+        ])))
 
 (defn generate-site! [markdown-dir target-dir]
     (let [fs (generate-all (postprocess (get-posts-data markdown-dir)))]
