@@ -7,7 +7,7 @@
             [hiccup.core :refer [html]]
             [hiccup.page :refer [include-css include-js]]
             [smackdown.generator :refer [generate-site!]]
-            [smackdown.views :refer [post base-template]]
+            [smackdown.views :refer [post multiple-posts base-template]]
             [smackdown.css :refer [generate-css]]
             [clj-time.core :refer [date-time]]
             ))
@@ -31,7 +31,7 @@
   )
 
 (defn test-page []
-  (post {:title "Test post"
+  (multiple-posts "Test Title" [{:title "Test post"
          :html "In the beginning God created the heavens and the earth.  And he
          saw that it was super good and he was super chuffed with it - like, really
          chuffed.  He was flipping well pleased wa'nt he.
@@ -39,7 +39,15 @@
          <code class=\"lang-java\">public static void main(){</br>  int bob = 2 + 2;</br>}</code>"
          :date (date-time 2013 12 25 15 0 0)
          :prev {:url "blah"}
-         :next {:url "blah"}})
+         :next {:url "blah"}}
+                                {:title "Test post 2"
+         :html "In the beginning God created the heavens and the earth.  And he
+         saw that it was super good and he was super chuffed with it - like, really
+         chuffed.  He was flipping well pleased wa'nt he.
+         <code class=\"lang-clojure\">(println \"Hello World!!\")</code>
+         <code class=\"lang-java\">public static void main(){</br>  int bob = 2 + 2;</br>}</code>"
+         :date (date-time 2013 12 23 15 0 0)
+         :next {:url "blah"}}])
   )
 
 (defn get-absolute-path [file]

@@ -17,7 +17,7 @@
      (laser/element= :title)
      (laser/content title)
      (laser/class= :content)
-     (laser/content (laser/unescaped (html content)))
+     (laser/content (laser/unescaped (html [:style  (generate-css)] content)))
      (laser/class= "blog-link")
      (laser/classes "selected")
    ))
@@ -47,14 +47,18 @@
       title
       (for [post posts]
         (html
-          [:h1 (:title post)]
-          [:h3 (fdate (:date post))]
+          [:div.post
+          [:div.post-header
+            [:h1 (:title post)]
+            [:span.post-date (fdate (:date post))]
+          ]
           (:html post)
-          [:hr]
+          ]
+          (if (:prev post) [:hr])
+         )
          )
       )
     )
-  )
 
 (defn post-list [title posts]
   (base-template

@@ -41,7 +41,7 @@
   (for [f files-metadata] (define-page (:file-name f) (views/post f))))
 
 (defn- generate-all-posts-html [file-metadata]
-    [(define-page "index.html" (views/multiple-posts "All posts" file-metadata))])
+    [(define-page "index.html" (views/multiple-posts "johncowie.co.uk" file-metadata))])
 
 (defn generate-all [files-metadata]
   (apply concat (map #(% files-metadata)
